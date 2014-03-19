@@ -32,8 +32,8 @@ Installation
 
 2. Install the project's dependencies:
 
-` cd htpwd `
-` pip install -r requirements.txt `
+` cd htpwd
+pip install -r requirements.txt `
 
 Configuration
 -------------
@@ -83,7 +83,9 @@ User Regexp:
 htpwd_wsgi.py
 #############
 ` import sys
+
 sys.path.insert(0, '/var/www/html/htpwd')
+
 from htpwd import app as application
 `
 htpwd_httpd.conf
