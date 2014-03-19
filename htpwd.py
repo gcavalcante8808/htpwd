@@ -13,6 +13,7 @@ import os
 HTPASSWD_FILE = os.environ.get('HTPASSWD_FILE')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 REGEXP = os.environ.get('USER_REGEXP')
+TARGET_PAGE = os.environ.get('TARGET_PAGE')
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -67,7 +68,8 @@ def root():
 
 @app.route('/changed')
 def changed():
-    return render_template('changed.html')
+    destiny = TARGET_PAGE
+    return render_template('changed.html', destiny=destiny)
 
 if __name__ == '__main__':
     manager.run()
