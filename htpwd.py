@@ -57,14 +57,10 @@ class HtForm(Form):
 
 @app.route('/', methods=['GET', 'POST'])
 def root():
-    name = None
     form = HtForm()
     if form.validate_on_submit():
-        name = form.name.data
-        passwd = form.passwd.data
-        form.name.data = ''
         return redirect(url_for('changed'))
-    return render_template('index.html', form=form, name=name)
+    return render_template('index.html', form=form)
 
 @app.route('/changed')
 def changed():
