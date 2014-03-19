@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Atualização de credenciais existentes - Apache
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+<p>
+Olá,
+    Através do formulário abaixo, você pode realizar a troca de sua senha
+    de acesso. <br /> Para tanto, será necessário fornecer o seu nome de usuário
+    (incluindo o prefixo, como por exemplo @EMPRESA), senha inicial ou atual e
+    nova senha.
+</p>
+{{ wtf.quick_form(form) }}
+</div>
+{% endblock %}
