@@ -37,8 +37,22 @@ Installation
 Configuration
 -------------
 
-For quick purposes, the deploy.wsgi file can be used for a fast deploy in an
-Apache WebServer. In any case, you need to define the following environment
+For quick purposes, the 'htpwd_httpd.conf' file can be used for a fast deploy in
+an Apache WebServer. If you choose to do so, the following guidelines can be
+applied:
+
+ 1 Create a specific user and group to run the project;
+ 2 Configure the final path of the project inside the file 'htpwd_wsgi.py';
+ 3 Copy the 'htpwd_httpd.conf' inside the deploy directory to your sites-enabled
+ or similar directory;
+ 4 Change the needed configurations inside the file; pay some special attention
+ for the path to your application and the user and group used to create the
+ instances.
+
+ If some of the information provided here is wrong, the apache server will
+  refuse to start or restart(if started).
+
+In any case, you need to define the following environment
 variables as follows:
 
  * HTPASSWD_FILE: The location of htpasswd file (eg: /data/app.htpasswd)
@@ -55,3 +69,41 @@ eg: echo "SOMESTRINGHERE" | md5sum
 
  * TARGET_PAGE: The link for a page which the user can access with the new
  password. eg: https://myzabbix.enterprise.com.
+
+Bellow a full example of the changes needed:
+
+Base dir: /var/www/html/htpwd
+Base subdomain: htpwd.mydomain.com
+User: htpwd
+Group: htpwd
+Secret Key: "MYKEYAAFADFADFAF"
+User Regexp:
+
+htpwd_wsgi.py
+#############
+` import sys
+sys.path.insert(0, '/var/www/html/htpwd')
+from htpwd import app as application
+`
+htpwd_httpd.conf
+################
+
+`
+<VirtualHost *>
+    ServerName htpwd.domain.com
+    SetEnv HTPASSWD_FILE /data/myfile.htpasswd
+    SetEnv SECRET_KEY MYKEYAAFADFADFAF
+    SetEnv USER_REGEXP ^\d{11}$
+    SetEnv TARGET_PAGE www.google.com.br
+    WSGIDaemonProcess htpwd user=htpwd group=htpwd threads=5
+    WSGIScriptAlias / /var/www/html/htpwd/htpwd_wsgi.py
+
+    <Directory /var/www/html/htpwd>
+        WSGIProcessGroup htpwd
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
+</VirtualHost>
+`
+
