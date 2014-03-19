@@ -43,11 +43,11 @@ For quick purposes, the 'htpwd_httpd.conf' file can be used for a fast deploy in
 an Apache WebServer. If you choose to do so, the following guidelines can be
 applied:
 
- 1 Create a specific user and group to run the project;
- 2 Configure the final path of the project inside the file 'htpwd_wsgi.py';
- 3 Copy the 'htpwd_httpd.conf' inside the deploy directory to your sites-enabled
+ * Create a specific user and group to run the project;
+ * Configure the final path of the project inside the file 'htpwd_wsgi.py';
+ * Copy the 'htpwd_httpd.conf' inside the deploy directory to your sites-enabled
  or similar directory;
- 4 Change the needed configurations inside the file; pay some special attention
+ * Change the needed configurations inside the file; pay some special attention
  for the path to your application and the user and group used to create the
  instances.
 
@@ -75,10 +75,15 @@ eg: echo "SOMESTRINGHERE" | md5sum
 Bellow a full example of the changes needed:
 
 Base dir: /var/www/html/htpwd
+
 Base subdomain: htpwd.mydomain.com
+
 User: htpwd
+
 Group: htpwd
+
 Secret Key: "MYKEYAAFADFADFAF"
+
 User Regexp:
 
 htpwd_wsgi.py
