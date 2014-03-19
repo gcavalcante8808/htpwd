@@ -33,6 +33,7 @@ Installation
 2. Install the project's dependencies:
 
 ` cd htpwd
+
 pip install -r requirements.txt `
 
 Configuration
