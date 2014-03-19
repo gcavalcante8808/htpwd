@@ -14,6 +14,7 @@ Requirements
 ------------
 
 * Apache with mod_wsgi installed or similar setup.
+* The htpasswd must be exist.
 
 For more information, take a look at:
 
