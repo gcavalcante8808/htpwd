@@ -32,9 +32,9 @@ Installation
 
 2. Install the project's dependencies:
 
-` cd htpwd
+` cd htpwd`
 
-pip install -r requirements.txt `
+`pip install -r requirements.txt `
 
 Configuration
 -------------
@@ -88,16 +88,17 @@ User Regexp:
 
 htpwd_wsgi.py
 #############
-` import sys
+```
+import sys
 
 sys.path.insert(0, '/var/www/html/htpwd')
 
 from htpwd import app as application
-`
+```
 htpwd_httpd.conf
 ################
 
-`
+```
 <VirtualHost *>
     ServerName htpwd.domain.com
     SetEnv HTPASSWD_FILE /data/myfile.htpasswd
@@ -114,4 +115,4 @@ htpwd_httpd.conf
         Allow from all
     </Directory>
 </VirtualHost>
-`
+```
