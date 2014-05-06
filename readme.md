@@ -144,9 +144,11 @@ As noted, the espanish language was added into the current languages suuport.
 
 By default, the project supports English (Native in the whole project) and
 Brazilian Portuguese. After add a new language, you need to init the directory
-with include the gettext .po file designed for the target language:
+with include the gettext .po file designed for the target language (at the top
+of directory):
 
 ```
+pybabel extract -F babel.cfg -o messages.pot .
 pybabel init -i messages.pot -d translations -l <ISO_LANGUAGE>
 ```
 
