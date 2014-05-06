@@ -157,5 +157,5 @@ within and LC_MESSAGES directory and a messages.po file; this last file, contain
 all strings that will be translated.
 
 For easy use, we recommend the translation using the poeditor or 'Loco' available
-at https://localise.biz wich allow users to translate and get .po and .mo files
+at https://localise.biz which allow users to translate and get .po and .mo files
 directly from browser.
