@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request
 from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form
-from flask.ext.babel import Babel, gettext as _
+from flask.ext.babel import Babel, lazy_gettext as _
 from wtforms import PasswordField, StringField, SubmitField
 from wtforms.validators import Required, Regexp, EqualTo
 from passlib.apache import HtpasswdFile
@@ -75,9 +75,11 @@ def changed():
     destiny = TARGET_PAGE
     return render_template('changed.html', destiny=destiny)
 
+
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(LANGUAGE.keys())
+
 
 if __name__ == '__main__':
     manager.run()
