@@ -1,0 +1,72 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Htpwd\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: Tue, 06 May 2014 18:35:42 +0100\n"
+"PO-Revision-Date: Tue, 06 May 2014 19:13:19 +0100\n"
+"Last-Translator: Gabriel Abdalla Cavalcante\n"
+"Language-Team: gcavalcante8808\n"
+"Language: Portuguese (Brazil)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz\n"
+"X-Loco-Source-Locale: en_US\n"
+"X-Loco-Target-Locale: pt_BR\n"
+"X-Loco-Tagged: \n"
+"X-Poedit-SourceCharset: UTF-8"
+
+#: Environment
+msgid "Environment"
+msgstr "Ambiente"
+
+#: Send
+msgid "Send"
+msgstr "Enviar"
+
+#: Username
+msgid "Username"
+msgstr "Nome de Usuário"
+
+#: apache-credential-update
+msgid "Apache Credential Update"
+msgstr "Atualização de credencial do Apache"
+
+#: congratulations
+msgid "Congratulations!!!"
+msgstr "Parabéns!!!"
+
+#: current-password
+msgid "Current Password"
+msgstr "Senha Atual"
+
+#: hello-through-the-form-bellow-you-can-change-your-
+msgid ""
+"Hello,\n"
+"    Through the form bellow, you can change your password. <br /> For this "
+"happen,\n"
+"     you must provide your username (based on the format defined by your "
+"administrator or enterprise),\n"
+"     first password or current password and the new one."
+msgstr ""
+"<p>Ol&aacute;, Atrav&eacute;s do formul&aacute;rio abaixo, voc&ecirc; pode "
+"realizar a troca de sua senha de acesso.&nbsp;<br />Para tanto, ser&aacute; "
+"necess&aacute;rio fornecer o seu nome de usu&aacute;rio (incluindo o prefixo, "
+"como por exemplo @EMPRESA), senha inicial ou atual e nova senha.</p>"
+
+#: new-password
+msgid "New Password"
+msgstr "Nova Senha"
+
+#: new-passwordconfirm
+msgid "New Password(Confirm)"
+msgstr "Nova Senha(Confirmação)"
+
+#: your-password-was-changed-successfully-to-access-t
+msgid ""
+"Your password was changed successfully. <br />\n"
+"        To access the environment just click on the URL bellow:"
+msgstr ""
+"<p>Sua senha foi atualizada com sucesso. Para acessar o ambiente, basta clicar "
+"no URL abaixo:</p>"
