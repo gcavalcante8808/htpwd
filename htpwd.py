@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for
 from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form
+from flask.ext.babel import Babel
 from wtforms import PasswordField, StringField, SubmitField
 from wtforms.validators import Required, Regexp, EqualTo
 from passlib.apache import HtpasswdFile
@@ -19,6 +20,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 manager = Manager(app)
 bootstrap = Bootstrap(app)
+babel = Babel(app)
 
 
 class HtForm(Form):
