@@ -116,3 +116,44 @@ htpwd_httpd.conf
     </Directory>
 </VirtualHost>
 ```
+
+Development
+-----------
+
+To develop using the package, you must install the requirements as noted, define
+the environment variables and then, start the development server through the command:
+
+```
+runserver -d option.
+```
+
+Translations
+------------
+
+TO translate the pages included in the project, you must first add a new language
+in the LANGUAGE DICT using the ISO language notation(info available at
+http://www.loc.gov/standards/iso639-2/php/code_list.php), like the example bellow:
+
+LANGUAGE = {
+    'en': 'English',
+    'pt_BR': 'Português do Brasil',
+    'es': 'Espanish'
+}
+
+As noted, the espanish language was added into the current languages suuport.
+
+By default, the project supports English (Native in the whole project) and
+Brazilian Portuguese. After add a new language, you need to init the directory
+with include the gettext .po file designed for the target language:
+
+```
+pybabel init -i messages.pot -d translations -l <ISO_LANGUAGE>
+```
+
+After that, a new directory will be created insided the translations directory,
+within and LC_MESSAGES directory and a messages.po file; this last file, contains
+all strings that will be translated.
+
+For easy use, we recommend the translation using the poeditor or 'Loco' available
+at https://localise.biz wich allow users to translate and get .po and .mo files
+directly from browser.
