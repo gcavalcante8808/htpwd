@@ -13,7 +13,7 @@ import os
 # Some Usefull information come from environment. All are needed.
 HTPASSWD_FILE = os.environ.get('HTPASSWD_FILE')
 SECRET_KEY = os.environ.get('SECRET_KEY')
-REGEXP = os.environ.get('USER_REGEXP')
+REGEXP = os.environ.get('REGEXP')
 TARGET_PAGE = os.environ.get('TARGET_PAGE')
 
 app = Flask(__name__)
