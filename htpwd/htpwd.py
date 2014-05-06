@@ -24,7 +24,7 @@ babel = Babel(app)
 
 LANGUAGE = {
     'en': 'English',
-    'pt_BR': 'Português do Brasil',
+    'pt_BR': 'Brazilian Portuguese',
 }
 
 
