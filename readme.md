@@ -124,7 +124,7 @@ To develop using the package, you must install the requirements as noted, define
 the environment variables and then, start the development server through the command:
 
 ```
-runserver -d
+runserver -d -r
 ```
 
 Translations
