@@ -1,8 +1,8 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form
-from flask.ext.babel import Babel
+from flask.ext.babel import Babel, gettext as _
 from wtforms import PasswordField, StringField, SubmitField
 from wtforms.validators import Required, Regexp, EqualTo
 from passlib.apache import HtpasswdFile
@@ -22,17 +22,22 @@ manager = Manager(app)
 bootstrap = Bootstrap(app)
 babel = Babel(app)
 
+LANGUAGE = {
+    'en': 'English',
+    'pt_BR': 'Português do Brasil',
+}
+
 
 class HtForm(Form):
     """ Contains all form fields and validation needed """
-    name = StringField('Nome de Usuário/CPF:',
+    name = StringField(_('Username'),
                        validators=[Required(), Regexp(REGEXP)])
-    passwd = PasswordField('Senha Atual:', validators=[Required()])
-    newpwd = PasswordField('Nova Senha:',
+    passwd = PasswordField(_('Current Password'), validators=[Required()])
+    newpwd = PasswordField(_('New Password'),
                            validators=[Required(), EqualTo('newpwd2')])
-    newpwd2 = PasswordField('Nova Senha(Confirmação):',
+    newpwd2 = PasswordField(_('New Password(Confirm)'),
                             validators=[Required()])
-    submit = SubmitField('Enviar')
+    submit = SubmitField(_('Send'))
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
@@ -70,6 +75,9 @@ def changed():
     destiny = TARGET_PAGE
     return render_template('changed.html', destiny=destiny)
 
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(LANGUAGE.keys())
 
 if __name__ == '__main__':
     manager.run()
