@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %} {{ _('Atualiza&ccedil;&atilde de credenciais existentes - Apache') }}
+{% block title %} {{ _('Apache Credential Update') }}
 {% endblock title %}
 
 
@@ -9,11 +9,11 @@
 
 <div class="container">
 <p>
-{{ _('Olá,
-    Através do formulário abaixo, você pode realizar a troca de sua senha
-    de acesso. <br /> Para tanto, será necessário fornecer o seu nome de usuário
-    (incluindo o prefixo, como por exemplo @EMPRESA), senha inicial ou atual e
-    nova senha.') }}
+{{ _('Hello,
+    Through the form bellow, you can change your password. <br /> For this happen,
+     you must provide your username (based on the format defined by your administrator or enterprise),
+     first password or current password and the new one.')
+}}
 </p>
 {{ wtf.quick_form(form) }}
 </div>
