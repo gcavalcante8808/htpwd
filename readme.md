@@ -62,7 +62,7 @@ variables as follows:
  * SECRET_KEY: Secred key that will be used within session and csrf_token.
 eg: echo "SOMESTRINGHERE" | md5sum
 
- * USER_REGEXP: Some verification regexp, that will be used to verify the
+ * REGEXP: Some verification regexp, that will be used to verify the
  user name field. Must be provided. If unsure, define it as [A-z0-9_.]+ for
  all possible matches.
 
@@ -84,7 +84,7 @@ Group: htpwd
 
 Secret Key: "MYKEYAAFADFADFAF"
 
-User Regexp:
+Regexp: \d{11}@test.com
 
 htpwd_wsgi.py
 #############
@@ -103,7 +103,7 @@ htpwd_httpd.conf
     ServerName htpwd.domain.com
     SetEnv HTPASSWD_FILE /data/myfile.htpasswd
     SetEnv SECRET_KEY MYKEYAAFADFADFAF
-    SetEnv USER_REGEXP ^\d{11}$
+    SetEnv REGEXP ^\d{11}@test.com
     SetEnv TARGET_PAGE www.google.com.br
     WSGIDaemonProcess htpwd user=htpwd group=htpwd threads=5
     WSGIScriptAlias / /var/www/html/htpwd/htpwd_wsgi.py
