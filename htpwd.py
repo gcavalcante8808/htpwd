@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, session
+from flask import Flask, render_template, redirect, url_for
 from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form
@@ -27,9 +27,9 @@ class HtForm(Form):
                        validators=[Required(), Regexp(REGEXP)])
     passwd = PasswordField('Senha Atual:', validators=[Required()])
     newpwd = PasswordField('Nova Senha:',
-                            validators=[Required(), EqualTo('newpwd2')])
+                           validators=[Required(), EqualTo('newpwd2')])
     newpwd2 = PasswordField('Nova Senha(Confirmação):',
-                                    validators=[Required()])
+                            validators=[Required()])
     submit = SubmitField('Enviar')
 
     def __init__(self, *args, **kwargs):
@@ -62,10 +62,12 @@ def root():
         return redirect(url_for('changed'))
     return render_template('index.html', form=form)
 
+
 @app.route('/changed')
 def changed():
     destiny = TARGET_PAGE
     return render_template('changed.html', destiny=destiny)
+
 
 if __name__ == '__main__':
     manager.run()
