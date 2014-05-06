@@ -1,4 +1,3 @@
-import os
 from distutils.core import setup
 
 with open('requirements.txt') as file:
