@@ -85,7 +85,7 @@ export HTPASSWD_FILE SECRET_KEY REGEXP TARGET_PAGE
 
 # Activate the virtualenv and then, start gunicorn
 source /data/backstage3.3/bin/activate
-gunicorn -D -c gunicorn.py htpwd.htpwd:app
+gunicorn -D -c gunicorn.py htpwd.htpwd:APP
 ```
 
 gunicorn.py
@@ -120,6 +120,31 @@ htpwd_httpd.conf
 </Location>
 </VirtualHost>
 ```
+
+Now it's time to copy the files into the Htpwd User home and edit it:
+
+cd /data
+cp /data/backstage/lib/python-<VERSION>/site-packages/htpwd/deploy/htpwd.sh .
+cp /data/backstage/lib/python-<VERSION>/site-packages/htpwd/deploy/gunicorn.py .
+
+Create the htpasswd file (apache2-utils needs to be installed):
+
+```
+htpasswd -c /data/myfile.htpasswd my@test.com
+```
+
+And install (as root) and start the gunicorn server(as the user):
+
+```
+pip install gunicorn
+su htpwd
+cd /data
+chmod +x htpwd.sh
+./htpwd.sh
+```
+
+Now you should configure your webserver.
+# TODO: Finish it.
 
 Development
 -----------
