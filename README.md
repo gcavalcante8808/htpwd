@@ -98,9 +98,6 @@ bind = "127.0.0.1:8000"
 # The best default configuration ever
 workers = multiprocessing.cpu_count() * 2 + 1
 ```
-
-TODO: Inserir diretivas de configuração do SSL.
-
 htpwd_httpd.conf
 ################
 
