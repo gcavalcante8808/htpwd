@@ -16,11 +16,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 REGEXP = os.environ.get('REGEXP', "[A-z0-9_.]+")
 TARGET_PAGE = os.environ.get('TARGET_PAGE')
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = SECRET_KEY
-manager = Manager(app)
-bootstrap = Bootstrap(app)
-babel = Babel(app)
+APP = Flask(__name__)
+APP.config['SECRET_KEY'] = SECRET_KEY
+MANAGER = Manager(APP)
+BOOTSTRAP = Bootstrap(APP)
+BABEL = Babel(APP)
 
 LANGUAGE = {
     'en': 'English',
@@ -43,6 +43,7 @@ class HtForm(Form):
         Form.__init__(self, *args, **kwargs)
 
     def validate(self):
+        """Validate the needed fields."""
         rv = Form.validate(self)
 
         if not rv:
@@ -62,24 +63,27 @@ class HtForm(Form):
             return False
 
 
-@app.route('/', methods=['GET', 'POST'])
+@APP.route('/', methods=['GET', 'POST'])
 def root():
+    """ Index Page, presents the form."""
     form = HtForm()
     if form.validate_on_submit():
         return redirect(url_for('changed'))
     return render_template('index.html', form=form)
 
 
-@app.route('/changed')
+@APP.route('/changed')
 def changed():
+    """ Congratz page!"""
     destiny = TARGET_PAGE
     return render_template('changed.html', destiny=destiny)
 
 
-@babel.localeselector
+@BABEL.localeselector
 def get_locale():
+    """ The page will be display in the browser"""
     return request.accept_languages.best_match(LANGUAGE.keys())
 
 
 if __name__ == '__main__':
-    manager.run()
+    MANAGER.run()
