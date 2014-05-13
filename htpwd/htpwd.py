@@ -1,3 +1,5 @@
+#!/bin/env python
+# coding: utf-8
 from flask import Flask, render_template, redirect, url_for, request
 from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
