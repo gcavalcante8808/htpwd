@@ -60,6 +60,9 @@ eg: echo "SOMESTRINGHERE" | md5sum
  * TARGET_PAGE: The link for a page which the user can access with the new
  password. eg: https://myzabbix.enterprise.com.
 
+If you need a diferente port for the gunicorn process, change it in gunicorn.py
+module.
+
 Bellow a full example of the changes needed:
 
 Base subdomain: htpwd.mydomain.com
@@ -104,7 +107,10 @@ htpwd_httpd.conf
 ```
 #A virtualhost with SSL and mod_proxy activated.
 <VirtualHost *:443>
-    ServerName htpwd.mydomain.com
+    ServerName htpwd.mydomain.com,
+    SSLEngine on
+    SSLCertificateFile /data/your.cert
+    SSLCertificateKeyFIle /data/your.key
     ErrorLog /var/log/httpd/htpwd_errors.log
     CustomLog /var/log/httpd/htpwd_custom.log common
     ProxyPreserveHost On
