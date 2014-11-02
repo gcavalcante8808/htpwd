@@ -8,18 +8,21 @@ from flask.ext.babel import Babel, lazy_gettext as _
 from wtforms import PasswordField, StringField, SubmitField
 from wtforms.validators import Required, Regexp, EqualTo
 from passlib.apache import HtpasswdFile
-import os
+from htpwd.util.base import parse_config_file
 
 #A simple App to change a htpasswd password.
 
-# Some Usefull information come from environment. All are needed.
-HTPASSWD_FILE = os.environ.get('HTPASSWD_FILE')
-SECRET_KEY = os.environ.get('SECRET_KEY')
-REGEXP = os.environ.get('REGEXP', "[A-z0-9_.]+")
-TARGET_PAGE = os.environ.get('TARGET_PAGE')
+# Some Usefull information come from the ini file. This is all we need.
+config = parse_config_file('htpwd.ini')
+
+SECRET_KEY = config['HTPWD']['secret_key']
+REGEXP = config['HTPWD']['regexp']
+HTPASSWD_FILE = config['HTPWD']['htpasswd_file']
+TARGET_PAGE = config['HTPWD']['target_page']
 
 APP = Flask(__name__)
 APP.config['SECRET_KEY'] = SECRET_KEY
+APP.debug = True
 MANAGER = Manager(APP)
 BOOTSTRAP = Bootstrap(APP)
 BABEL = Babel(APP)
