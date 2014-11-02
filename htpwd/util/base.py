@@ -40,6 +40,10 @@ def create_config_file(htfile, key, target_page, regexp=r'[A-z0-9_.]+',
 
 
 def parse_config_file(file):
+    """
+    :param file: the configfile that will be parsed.
+    :return: a ConfigParser object containing the information.
+    """
     config = configparser.ConfigParser()
     config.read(file)
     return config
