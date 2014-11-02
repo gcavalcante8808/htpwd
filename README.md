@@ -41,51 +41,21 @@ deploy in an Apache WebServer. If you choose to do so, the following guidelines
 can be applied:
 
  * Create a specific user and group to run the project;
- * Copy the 'htpwd.sh' and 'gunicorn.py' to the home directory of the user
- created and change the environment variables contained in 'htpwd.sh' as per
- following:
+ * Copy the 'htpwd.sh', htpwd.ini and 'gunicorn.py' to the home directory of
+ the user created and change the working directory of the virtualenv which will
+ be used.
 
- * HTPASSWD_FILE: The location of htpasswd file (eg: /data/app.htpasswd)
-
- * SECRET_KEY: Secret key that will be used within session and csrf_token.
-eg: echo "SOMESTRINGHERE" | md5sum
-
- * REGEXP: Some verification regexp, that will be used to verify the
- user name field. Must be provided. If False, it will be defined as [A-z0-9_.]+,
- all possible matches.
-
- eg: ^\d{11}@ENTERPRISE$ will match Brazilian CPF appended with the
- @ENTERPRISE suffix.
-
- * TARGET_PAGE: The link for a page which the user can access with the new
- password. eg: https://myzabbix.enterprise.com.
-
-If you need a diferente port for the gunicorn process, change it in gunicorn.py
-module.
+As default, the gunicorn uses the 8000 port to answer resquests. If you need a
+different port for the gunicorn process, change it in gunicorn.py module.
 
 Bellow a full example of the changes needed:
-
-Base subdomain: htpwd.mydomain.com
-User: htpwd
-Group: htpwd
-Secret Key: "MYKEYAAFADFADFAF"
-Regexp: \d{11}@test.com
 
 htpwd.sh
 ########
 ```
-#Define all needed environment variables
-HTPASSWD_FILE=/data/myfile.htpasswd
-SECRET_KEY="MYKEYAAFADFADFAF"
-REGEXP="\d{11}@test.com"
-TARGET_PAGE=www.google.com
-
-# And export then
-export HTPASSWD_FILE SECRET_KEY REGEXP TARGET_PAGE
-
 # Activate the virtualenv and then, start gunicorn
 source /data/backstage3.3/bin/activate
-gunicorn -D -c gunicorn.py htpwd.htpwd:APP
+gunicorn -D -c gunicorn.py htpwd.htmanager:APP
 ```
 
 gunicorn.py
@@ -121,11 +91,14 @@ htpwd_httpd.conf
 </VirtualHost>
 ```
 
-Now it's time to copy the files into the Htpwd User home and edit it:
+Now it's time to copy the files into the Htpwd User home and configure it:
 
-cd /data
-cp /data/backstage/lib/python-<VERSION>/site-packages/htpwd/deploy/htpwd.sh .
-cp /data/backstage/lib/python-<VERSION>/site-packages/htpwd/deploy/gunicorn.py .
+```
+cd /yourdirectory
+wget https://raw.githubusercontent.com/gcavalcante8808/htpwd/master/htpwd/deploy/gunicorn.py
+wget https://raw.github.com/gcavalcante8808/htpwd/blob/master/htpwd/deploy/htpwd.sh
+wget https://raw.githubusercontent.com/gcavalcante8808/htpwd/master/htpwd/deploy/htpwd.sh
+```
 
 Create the htpasswd file (apache2-utils needs to be installed):
 
@@ -144,17 +117,22 @@ chmod +x htpwd.sh
 ```
 
 Now you should configure your webserver.
-# TODO: Finish it.
 
 Development
 -----------
 
-To develop using the package, you must install the requirements as noted, define
-the environment variables and then, start the development server through the command:
+To develop using the package, you can download it through git and create a 
+development symlink using the following commands:
 
 ```
-runserver -d -r
+git clone https://github.com/gcavalcante8808/htpwd.git
+cd htpwd
+python setup.py develop
 ```
+
+After this, all changes made into the htpwd will be mirrored to your virtual
+environment (develop makes a symlink to the current dir into the site-packages
+dir of your virtualenv).
 
 Translations
 ------------
