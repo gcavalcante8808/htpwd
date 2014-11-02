@@ -59,5 +59,30 @@ class UserTest(TestCase):
         # environment that uses this new credential.
         self.assertIn('http://localhost:8000/changed', self.browser.current_url)
 
+    def test_user_can_login(self):
+        """
+        Tests if the user can login into the system.
+        """
+
+        #go2URL
+        self.browser.get('http://localhost:8000/login/')
+        self.assertIn('Apache', self.browser.title)
+
+        #Is there any box to enter the username available?
+        usernamebox = self.browser.find_element_by_id('username')
+        self.assertEqual(usernamebox.get_attribute('name'), 'username')
+
+        #Time to enter the username into the field.
+        usernamebox.send_keys('12345678901@test.com')
+
+        #Is there any box to enter our password?
+        passwd = self.browser.find_element_by_id('password')
+        self.assertEqual(passwd.get_attribute('name'), 'password')
+
+        passwd.send_keys('htpwd123@enterprise')
+        passwd.send_keys(Keys.ENTER)
+
+        self.assertIn('http://localhost:8000/', self.browser.current_url)
+
 if __name__ == '__main__':
     unittest.main()
