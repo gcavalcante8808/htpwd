@@ -24,14 +24,13 @@ def create_config_file(htfile, key, target_page, regexp=r'[A-z0-9_.]+',
     :param fname: the filename of configfile, default as htpwd.ini.
     :return: a config file containing all the information passed.
     """
-    config = configparser.ConfigParser()
+    config = ConfigObj(fname)
     config['HTPWD'] = {'htpasswd_file': htfile,
-                         'secret_key': key,
-                         'target_page': target_page,
-                         'regexp': regexp}
-    with open(fname, 'w') as configfile:
-        config.write(configfile)
+                       'secret_key': key,
+                       'target_page': target_page,
+                       'regexp': regexp}
 
+    config.write()
     return config
 
 
