@@ -1,9 +1,5 @@
-import six
 from hashlib import md5
-if six.PY2:
-    import ConfigParser as configparser
-elif six.PY3:
-    import configparser
+from configobj import ConfigObj
 
 
 def create_secret_key(string):
@@ -45,10 +41,11 @@ def parse_config_file(file='htpwd.ini'):
     no value is provided.
     :return: a ConfigParser object containing the information.
     """
-    config = configparser.ConfigParser()
-    config.read(file)
+#    config = configparser.ConfigParser()
+#    config.read(file)
+    config = ConfigObj(file)
 
-    if not config.has_section('HTPWD'):
+    if not config.get('HTPWD', None):
         raise NotImplementedError('The file doesnt have a HTPWD Section')
 
     return config
