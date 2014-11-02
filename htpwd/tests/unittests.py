@@ -7,8 +7,8 @@ class TestHtpwd(unittest.TestCase):
     def setUp(self):
         self.test_config_file_creating()
 
-    # def tearDown(self):
-    #     os.remove('config_file_unittest.ini')
+    def tearDown(self):
+        os.remove('config_file_unittest.ini')
 
     def test_create_secret_key(self):
         from htpwd.util.base import create_secret_key
