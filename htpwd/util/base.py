@@ -29,7 +29,7 @@ def create_config_file(htfile, key, target_page, regexp=r'[A-z0-9_.]+',
     :return: a config file containing all the information passed.
     """
     config = configparser.ConfigParser()
-    config['DEFAULT'] = {'htpasswd_file': htfile,
+    config['HTPWD'] = {'htpasswd_file': htfile,
                          'secret_key': key,
                          'target_page': target_page,
                          'regexp': regexp}
@@ -39,13 +39,16 @@ def create_config_file(htfile, key, target_page, regexp=r'[A-z0-9_.]+',
     return config
 
 
-def parse_config_file(file):
+def parse_config_file(file='htpwd.ini'):
     """
-    :param file: the configfile that will be parsed.
+    :param file: the configfile that will be parsed. htpwd.ini will be used if
+    no value is provided.
     :return: a ConfigParser object containing the information.
     """
     config = configparser.ConfigParser()
     config.read(file)
+
+    if not config.has_section('HTPWD'):
+        raise NotImplementedError('The file doesnt have a HTPWD Section')
+
     return config
-
-
