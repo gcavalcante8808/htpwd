@@ -1,4 +1,3 @@
-__author__ = '01388863189'
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
