@@ -12,7 +12,7 @@ Flask-Testing
 Jinja2==2.7.2
 MarkupSafe==0.21
 WTForms==1.0.5
-Werkzeug==0.9.4
+Werkzeug==0.15.3
 itsdangerous==0.24
 passlib==1.6.2
 pytz==2014.2
