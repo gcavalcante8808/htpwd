@@ -1,6 +1,6 @@
 configobj
 selenium
-Babel==1.3
+Babel==2.9.1
 Flask==1.0
 Flask-admin
 Flask-login
